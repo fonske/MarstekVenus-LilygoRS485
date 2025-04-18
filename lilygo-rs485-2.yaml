@@ -149,7 +149,7 @@ binary_sensor:
     modbus_controller_id: mt
     register_type: holding
     address: 36000
-    bitmask: 0x16
+    bitmask: 0x10
     skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
@@ -157,7 +157,7 @@ binary_sensor:
     modbus_controller_id: mt
     register_type: holding
     address: 36000
-    bitmask: 0x32
+    bitmask: 0x20
     skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
@@ -165,7 +165,7 @@ binary_sensor:
     modbus_controller_id: mt
     register_type: holding
     address: 36000
-    bitmask: 0x64
+    bitmask: 0x40
     skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
@@ -237,7 +237,7 @@ binary_sensor:
     modbus_controller_id: mt
     register_type: holding
     address: 36100
-    bitmask: 0x16
+    bitmask: 0x10
     skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
@@ -245,7 +245,7 @@ binary_sensor:
     modbus_controller_id: mt
     register_type: holding
     address: 36100
-    bitmask: 0x32
+    bitmask: 0x20
     skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
@@ -253,7 +253,7 @@ binary_sensor:
     modbus_controller_id: mt
     register_type: holding
     address: 36100
-    bitmask: 0x64
+    bitmask: 0x40
     skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
@@ -293,7 +293,7 @@ binary_sensor:
     modbus_controller_id: mt
     register_type: holding
     address: 36101
-    bitmask: 0x16
+    bitmask: 0x10
     skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
@@ -301,7 +301,7 @@ binary_sensor:
     modbus_controller_id: mt
     register_type: holding
     address: 36101
-    bitmask: 0x32
+    bitmask: 0x20
     skip_updates: 6 # 30 seconds
 
   - platform: status
