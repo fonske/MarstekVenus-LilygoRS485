@@ -490,6 +490,7 @@ sensor:
     accuracy_decimals: 2
     filters:
       - multiply: 0.01
+    register_count: 2
     skip_updates: 60 # 5 minutes
 
   - name: "Marstek Total Discharging Energy"
@@ -504,6 +505,7 @@ sensor:
     accuracy_decimals: 2
     filters:
       - multiply: 0.01
+    register_count: 2
     skip_updates: 60 # 5 minutes
 
   - name: "Marstek Daily Charging Energy"
@@ -518,6 +520,7 @@ sensor:
     accuracy_decimals: 2
     filters:
       - multiply: 0.01
+    register_count: 2
     skip_updates: 60 # 5 minutes
 
   - name: "Marstek Daily Discharging Energy"
@@ -532,6 +535,7 @@ sensor:
     accuracy_decimals: 2
     filters:
       - multiply: 0.01
+    register_count: 2
     skip_updates: 60 # 5 minutes
 
   - name: "Marstek Monthly Charging Energy"
@@ -546,6 +550,7 @@ sensor:
     accuracy_decimals: 2
     filters:
       - multiply: 0.01
+    register_count: 2
     skip_updates: 60 # 5 minutes
 
   - name: "Marstek Monthly Discharging Energy"
@@ -560,6 +565,7 @@ sensor:
     accuracy_decimals: 2
     filters:
       - multiply: 0.01
+    register_count: 2
     skip_updates: 60 # 5 minutes
 
   - name: "Marstek Internal Temperature"
