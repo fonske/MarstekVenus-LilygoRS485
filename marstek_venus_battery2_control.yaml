@@ -30,7 +30,6 @@
         - name: "My Battery2 Efficiency Percentage"
           unique_id: my_battery2_efficiency_percentage
           unit_of_measurement: "%"
-          device_class: power
           state_class: measurement
           state: >
             {% set charging = states('sensor.my_battery2_daily_charging_in_kwh') | float %}
