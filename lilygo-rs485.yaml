@@ -120,7 +120,6 @@ binary_sensor:
     register_type: holding
     address: 36000
     bitmask: 0x01
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Overtemperature Limit"
@@ -129,7 +128,6 @@ binary_sensor:
     register_type: holding
     address: 36000
     bitmask: 0x02
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Low Temperature Limit"
@@ -138,7 +136,6 @@ binary_sensor:
     register_type: holding
     address: 36000
     bitmask: 0x04
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Fan Abnormal Warning"
@@ -147,7 +144,6 @@ binary_sensor:
     register_type: holding
     address: 36000
     bitmask: 0x08
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Low Battery SOC Warning"
@@ -156,7 +152,6 @@ binary_sensor:
     register_type: holding
     address: 36000
     bitmask: 0x10
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Output Overcurrent Warning"
@@ -165,7 +160,6 @@ binary_sensor:
     register_type: holding
     address: 36000
     bitmask: 0x20
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Abnormal Line Sequence Detection"
@@ -174,7 +168,6 @@ binary_sensor:
     register_type: holding
     address: 36000
     bitmask: 0x40
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Wifi Abnormal"
@@ -183,7 +176,6 @@ binary_sensor:
     register_type: holding
     address: 36001
     bitmask: 0x01
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek BLE abnormal"
@@ -192,7 +184,6 @@ binary_sensor:
     register_type: holding
     address: 36001
     bitmask: 0x02
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Network abnormal"
@@ -201,7 +192,6 @@ binary_sensor:
     register_type: holding
     address: 36001
     bitmask: 0x04
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek CT connection abnormal"
@@ -210,7 +200,6 @@ binary_sensor:
     register_type: holding
     address: 36001
     bitmask: 0x08
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Grid overvoltage"
@@ -219,7 +208,6 @@ binary_sensor:
     register_type: holding
     address: 36100
     bitmask: 0x01
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Grid undervoltage"
@@ -228,7 +216,6 @@ binary_sensor:
     register_type: holding
     address: 36100
     bitmask: 0x02
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Grid overfrequency"
@@ -237,7 +224,6 @@ binary_sensor:
     register_type: holding
     address: 36100
     bitmask: 0x04
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Grid underfrequency"
@@ -246,7 +232,6 @@ binary_sensor:
     register_type: holding
     address: 36100
     bitmask: 0x08
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Grid peak voltage abnormal"
@@ -255,7 +240,6 @@ binary_sensor:
     register_type: holding
     address: 36100
     bitmask: 0x10
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Current Dcover"
@@ -264,7 +248,6 @@ binary_sensor:
     register_type: holding
     address: 36100
     bitmask: 0x20
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek Voltage Dcover"
@@ -273,7 +256,6 @@ binary_sensor:
     register_type: holding
     address: 36100
     bitmask: 0x40
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek BAT overvoltage"
@@ -282,7 +264,6 @@ binary_sensor:
     register_type: holding
     address: 36101
     bitmask: 0x01
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek BAT undervoltage"
@@ -291,7 +272,6 @@ binary_sensor:
     register_type: holding
     address: 36101
     bitmask: 0x02
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek BAT overcurrent"
@@ -300,7 +280,6 @@ binary_sensor:
     register_type: holding
     address: 36101
     bitmask: 0x04
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek BAT low SOC"
@@ -309,7 +288,6 @@ binary_sensor:
     register_type: holding
     address: 36101
     bitmask: 0x08
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek BAT communication failure"
@@ -318,7 +296,6 @@ binary_sensor:
     register_type: holding
     address: 36101
     bitmask: 0x10
-    skip_updates: 6 # 30 seconds
 
   - platform: modbus_controller
     name: "Marstek BMS protect"
@@ -327,7 +304,6 @@ binary_sensor:
     register_type: holding
     address: 36101
     bitmask: 0x20
-    skip_updates: 6 # 30 seconds
 
   - platform: status
     name: "WiFi Status"
@@ -366,7 +342,6 @@ sensor:
     state_class: measurement
     filters:
       - multiply: 0.01
-    skip_updates: 60 # 5 minutes
     
   - name: "Marstek Battery Current (Average)"
     id: "lilygo_rs485_marstek_battery_current_average"
@@ -404,8 +379,8 @@ sensor:
     value_type: U_WORD
     unit_of_measurement: "%"
     accuracy_decimals: 1
-    skip_updates: 60 # 5 minutes
 
+# Slow Sensor
   - name: "Marstek Battery Total Energy"
     id: "lilygo_rs485_marstek_battery_total_energy" # Was marstek_total_energy
     platform: modbus_controller
@@ -426,9 +401,9 @@ sensor:
     accuracy_decimals: 2
     update_interval: 300s
     lambda: |-
-      if (id(lilygo_marstek_battery_total_energy).has_state() && id(lilygo_marstek_battery_state_of_charge).has_state()) {
-        float total_energy = id(lilygo_marstek_battery_total_energy).state;
-        float soc = id(lilygo_marstek_battery_state_of_charge).state / 100.0;
+      if (id(lilygo_rs485_marstek_battery_total_energy).has_state() && id(lilygo_rs485_marstek_battery_state_of_charge).has_state()) {
+        float total_energy = id(lilygo_rs485_marstek_battery_total_energy).state;
+        float soc = id(lilygo_rs485_marstek_battery_state_of_charge).state / 100.0;
         return roundf(total_energy * soc * 100) / 100; // Ensures two decimal places
       }
       return NAN;
@@ -446,7 +421,6 @@ sensor:
     accuracy_decimals: 1
     filters:
       - multiply: 0.1
-    skip_updates: 60 # 5 minutes
 
   - name: "Marstek AC Current"
     id: "lilygo_rs485_marstek_ac_current"
@@ -462,6 +436,7 @@ sensor:
     filters:
       - multiply: 0.01
 
+# Slow Sensor
   - name: "Marstek AC Power"
     id: "lilygo_rs485_marstek_ac_power"
     platform: modbus_controller
@@ -487,7 +462,7 @@ sensor:
 #    accuracy_decimals: 1
 #    filters:
 #      - multiply: 0.1
-#    skip_updates: 60 # 5 minutes
+
 
 #  - name: "Marstek AC Offgrid Current"
 #    id: "lilygo_rs485_marstek_ac_offgrid_current"
@@ -528,7 +503,6 @@ sensor:
     filters:
       - multiply: 0.01
     register_count: 2
-    skip_updates: 60 # 5 minutes
 
   - name: "Marstek Total Discharging Energy"
     id: "lilygo_rs485_marstek_total_discharging_energy"
@@ -544,7 +518,6 @@ sensor:
     filters:
       - multiply: 0.01
     register_count: 2
-    skip_updates: 60 # 5 minutes
 
   - name: "Marstek Daily Charging Energy"
     id: "lilygo_rs485_marstek_daily_charging_energy"
@@ -560,7 +533,6 @@ sensor:
     filters:
       - multiply: 0.01
     register_count: 2
-    skip_updates: 60 # 5 minutes
 
   - name: "Marstek Daily Discharging Energy"
     id: "lilygo_rs485_marstek_daily_discharging_energy"
@@ -576,8 +548,8 @@ sensor:
     filters:
       - multiply: 0.01
     register_count: 2
-    skip_updates: 60 # 5 minutes
 
+# Slow Sensor
   - name: "Marstek Monthly Charging Energy"
     id: "lilygo_rs485_marstek_monthly_charging_energy"
     platform: modbus_controller
@@ -594,6 +566,7 @@ sensor:
     register_count: 2
     skip_updates: 60 # 5 minutes
 
+# Slow Sensor
   - name: "Marstek Monthly Discharging Energy"
     id: "lilygo_rs485_marstek_monthly_discharging_energy"
     platform: modbus_controller
@@ -623,7 +596,6 @@ sensor:
     accuracy_decimals: 1
     filters:
       - multiply: 0.1
-    skip_updates: 60 # 5 minutes
 
   - name: "Marstek Internal MOS1 Temperature"
     id: "lilygo_rs485_marstek_internal_mos1_temperature"
@@ -636,10 +608,10 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    skip_updates: 60 # 5 minutes
     filters:
       - multiply: 0.1
-    
+
+# Slow Sensor    
   - name: "Marstek Internal MOS2 Temperature"
     id: "lilygo_rs485_marstek_internal_mos2_temperature"
     platform: modbus_controller
@@ -666,7 +638,6 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    skip_updates: 60 # 5 minutes
     filters:
       - multiply: 0.1
     
@@ -681,7 +652,6 @@ sensor:
     device_class: temperature
     state_class: measurement
     accuracy_decimals: 1
-    skip_updates: 60 # 5 minutes
     filters:
       - multiply: 0.1
     
@@ -696,7 +666,6 @@ sensor:
     device_class: voltage
     accuracy_decimals: 0
     state_class: measurement
-    skip_updates: 60 # 5 minutes
     filters:
       - multiply: 0.01
 
@@ -711,7 +680,6 @@ sensor:
     device_class: current
     accuracy_decimals: 0
     state_class: measurement
-    skip_updates: 60 # 5 minutes
     filters:
       - multiply: 0.01
 
@@ -726,7 +694,6 @@ sensor:
     device_class: current
     accuracy_decimals: 0
     state_class: measurement
-    skip_updates: 60 # 5 minutes
     filters:
       - multiply: 0.01
 
@@ -838,7 +805,6 @@ number:
     min_value: 0
     max_value: 2500
     step: 1
-    skip_updates: 2 # 10 seconds
 
   - name: "Marstek Charging Cutoff Capacity"
     id: "lilygo_rs485_marstek_charging_cutoff_capacity"
@@ -852,7 +818,6 @@ number:
     min_value: 80
     max_value: 100
     multiply: 10
-    skip_updates: 6 # 30 seconds
 
   - name: "Marstek Discharging Cutoff Capacity"
     id: "lilygo_rs485_marstek_discharging_cutoff_capacity"
@@ -866,7 +831,6 @@ number:
     min_value: 12
     max_value: 30
     multiply: 10
-    skip_updates: 6 # 30 seconds
 
   - name: "Marstek Max. Charge Power"
     id: "lilygo_rs485_marstek_max_charge_power"
@@ -881,8 +845,8 @@ number:
     min_value: 0
     max_value: 2500
     step: 1
-    skip_updates: 2 # 10 seconds
 
+# Slow Sensor
   - name: "Marstek Max. Discharge Power"
     id: "lilygo_rs485_marstek_max_discharge_power"
     icon: mdi:tune-variant
