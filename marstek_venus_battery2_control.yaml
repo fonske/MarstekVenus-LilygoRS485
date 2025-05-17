@@ -66,49 +66,49 @@
 # UTILITY METERS
 # --------------
   utility_meter:
-    daily_discharge:
+    daily_discharge2:
       name: My Battery2 Daily Discharging in kWh
       unique_id: my_battery2_daily_discharging_in_kwh
       source: sensor.my_battery2_discharging_in_kwh
       cycle: daily
 
-    daily_charge:
+    daily_charge2:
       name: My Battery2 Daily Charging in kWh
       unique_id: my_battery2_daily_charging_in_kwh
       source: sensor.my_battery2_charging_in_kwh
       cycle: daily
 
-    weekly_discharge:
+    weekly_discharge2:
       name: My Battery2 Weekly Discharging in kWh
       unique_id: my_battery2_weekly_discharging_in_kwh
       source: sensor.my_battery2_discharging_in_kwh
       cycle: weekly
 
-    weekly_charge:
+    weekly_charge2:
       name: My Battery2 Weekly Charging in kWh
       unique_id: my_battery2_weekly_charging_in_kwh
       source: sensor.my_battery2_charging_in_kwh
       cycle: weekly
 
-    monthly_discharge:
+    monthly_discharge2:
       name: My Battery2 Monthly Discharging in kWh
       unique_id: my_battery2_monthly_discharging_in_kwh
       source: sensor.my_battery2_discharging_in_kwh
       cycle: monthly
 
-    monthly_charge:
+    monthly_charge2:
       name: My Battery2 Monthly Charging in kWh
       unique_id: my_battery2_monthly_charging_in_kwh
       source: sensor.my_battery2_charging_in_kwh
       cycle: monthly
 
-    yearly_discharge:
+    yearly_discharge2:
       name: My Battery2 Yearly Discharging in kWh
       unique_id: my_battery2_yearly_discharging_in_kwh
       source: sensor.my_battery2_discharging_in_kwh
       cycle: yearly
 
-    yearly_charge:
+    yearly_charge2:
       name: My Battery2 Yearly Charging in kWh
       unique_id: my_battery2_yearly_charging_in_kwh
       source: sensor.my_battery2_charging_in_kwh
