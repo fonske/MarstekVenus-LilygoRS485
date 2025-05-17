@@ -67,13 +67,13 @@ uart:
 modbus:
   - uart_id: mod_bus
     id: modbus1
-    send_wait_time: 200ms
+    send_wait_time: 30ms
 
 modbus_controller:
   - id: mt
     address: 0x1
     modbus_id: modbus1
-    command_throttle: 200ms
+    command_throttle: 30ms
     update_interval: 5s
 
 # Tekstsensoren
@@ -669,6 +669,7 @@ sensor:
     filters:
       - multiply: 0.01
 
+# Slow Sensor 
   - name: "Marstek Battery Charge Current Limit"
     id: "lilygo_rs485_marstek_battery_charge_current_limit"
     platform: modbus_controller
@@ -683,6 +684,7 @@ sensor:
     filters:
       - multiply: 0.01
 
+# Slow Sensor 
   - name: "Marstek Battery Discharge Current Limit"
     id: "lilygo_rs485_marstek_battery_discharge_current_limit"
     platform: modbus_controller
