@@ -892,20 +892,30 @@ interval:
                 green: 100%  # 🟢 Green = Modbus OK & WiFi strong
                 blue: 0%
           else:
-      - if:
-              return !isnan(id(modbus_status).state) && id(wifi_strength).state > -80;
-          then:
-                🟢 Green = Modbus OK & WiFi strong
-          else:
             - if:
-                    return isnan(id(modbus_status).state) && id(wifi_strength).state < -80;
+                condition:
+                  lambda: |-
+                    return isnan(id(modbus_status).state) && id(wifi_strength).state < -85;
                 then:
-                      🟣 Purple = Both Modbus & WiFi failed
+                  - light.turn_on:
+                      id: status_led
+                      red: 100%  # 🟣 Purple = Both Modbus & WiFi failed
+                      green: 0%
+                      blue: 100%
                 else:
                   - if:
+                      condition:
+                        lambda: |-
                           return id(wifi_strength).state < -80;
                       then:
-                            🔵 Blue = Weak WiFi signal (< -80 dBm)
+                        - light.turn_on:
+                            id: status_led
+                            red: 0%
+                            green: 0%
+                            blue: 100%  # 🔵 Blue = Weak WiFi signal (< -80 dBm)
                       else:
-                            🔴 Red = Modbus error, WiFi OK
-                            
+                        - light.turn_on:
+                            id: status_led
+                            red: 100%  # 🔴 Red = Modbus error, WiFi OK
+                            green: 0%
+                            blue: 0%
