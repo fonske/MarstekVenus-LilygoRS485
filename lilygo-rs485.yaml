@@ -373,23 +373,27 @@ sensor:
   - name: "Marstek Battery State Of Charge"
     id: "lilygo_rs485_marstek_battery_state_of_charge" # Was marstek_soc
     platform: modbus_controller
+    device_class: battery
+    state_class: measurement
     modbus_controller_id: mt
     register_type: holding
     address: 32104
     value_type: U_WORD
     unit_of_measurement: "%"
-    accuracy_decimals: 1
+    accuracy_decimals: 0
 
 # Slow Sensor
   - name: "Marstek Battery Total Energy"
     id: "lilygo_rs485_marstek_battery_total_energy" # Was marstek_total_energy
     platform: modbus_controller
+    device_class: energy_storage
+    state_class: measurement
     modbus_controller_id: mt
     register_type: holding
     address: 32105 
     value_type: U_WORD
     unit_of_measurement: "kWh"
-    accuracy_decimals: 2
+    accuracy_decimals: 3
     filters:
       - multiply: 0.001 # Firmware 148: 0.001 / Firmware 147: 0.01
     skip_updates: 60 # 5 minutes
@@ -454,12 +458,13 @@ sensor:
 #    id: "lilygo_rs485_marstek_ac_offgrid_voltage"
 #    platform: modbus_controller
 #    modbus_controller_id: mt
+#    state_class: measurement
 #    register_type: holding
 #    address: 32300
 #    value_type: U_WORD
 #    unit_of_measurement: "V"
 #    device_class: voltage
-#    accuracy_decimals: 1
+#    accuracy_decimals: 2
 #    filters:
 #      - multiply: 0.1
 
@@ -467,6 +472,7 @@ sensor:
 #  - name: "Marstek AC Offgrid Current"
 #    id: "lilygo_rs485_marstek_ac_offgrid_current"
 #    platform: modbus_controller
+#    state_class: measurement
 #    modbus_controller_id: mt
 #    register_type: holding
 #    address: 32301
@@ -480,6 +486,7 @@ sensor:
 #  - name: "Marstek AC Offgrid Power"
 #    id: "lilygo_rs485_marstek_ac_offgrid_power"
 #    platform: modbus_controller
+#    state_class: measurement
 #    modbus_controller_id: mt
 #    register_type: holding
 #    address: 32302
@@ -664,12 +671,11 @@ sensor:
     value_type: U_WORD
     unit_of_measurement: "V"
     device_class: voltage
-    accuracy_decimals: 0
+    accuracy_decimals: 1
     state_class: measurement
     filters:
-      - multiply: 0.01
+      - multiply: 0.1
 
-# Slow Sensor 
   - name: "Marstek Battery Charge Current Limit"
     id: "lilygo_rs485_marstek_battery_charge_current_limit"
     platform: modbus_controller
@@ -679,12 +685,11 @@ sensor:
     value_type: S_WORD
     unit_of_measurement: "A"
     device_class: current
-    accuracy_decimals: 0
+    accuracy_decimals: 1
     state_class: measurement
     filters:
-      - multiply: 0.01
+      - multiply: 0.1
 
-# Slow Sensor 
   - name: "Marstek Battery Discharge Current Limit"
     id: "lilygo_rs485_marstek_battery_discharge_current_limit"
     platform: modbus_controller
@@ -694,11 +699,11 @@ sensor:
     value_type: S_WORD
     unit_of_measurement: "A"
     device_class: current
-    accuracy_decimals: 0
+    accuracy_decimals: 1
     state_class: measurement
     filters:
-      - multiply: 0.01
-  
+      - multiply: 0.1
+
   - name: "Marstek Battery Maximum Cell Voltage"
     platform: modbus_controller
     modbus_controller_id: mt
@@ -740,7 +745,7 @@ sensor:
         return NAN;
       }
       return id(marstek_max_cell_voltage).state - id(marstek_min_cell_voltage).state;
-
+  
   - platform: wifi_signal
     name: "WiFi Signal Strength"
     id: "wifi_strength" # Was wifi_strength
@@ -926,7 +931,7 @@ interval:
       - if:
           condition:
             lambda: |-
-              return !isnan(id(modbus_status).state) && id(wifi_strength).state > -70;
+              return !isnan(id(modbus_status).state) && id(wifi_strength).state > -80;
           then:
             - light.turn_on:
                 id: status_led
@@ -937,7 +942,7 @@ interval:
             - if:
                 condition:
                   lambda: |-
-                    return isnan(id(modbus_status).state) && id(wifi_strength).state < -85;
+                    return isnan(id(modbus_status).state) && id(wifi_strength).state < -80;
                 then:
                   - light.turn_on:
                       id: status_led
