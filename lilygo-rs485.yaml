@@ -318,6 +318,16 @@ sensor:
     address: 35100
     value_type: U_WORD
     internal: true # Hides from Home Assistant
+    
+  - name: "Marstek Battery Wifi Signal Strength"
+    id: "lilygo_rs485_marstek_battery_wifi_signal_strenght"
+    platform: modbus_controller
+    modbus_controller_id: mt
+    register_type: holding
+    address: 30303
+    value_type: U_WORD
+    unit_of_measurement: "dB"
+    accuracy_decimals: 0    
 
   - name: "Marstek Firmware Version"
     id: "lilygo_rs485_marstek_firmware_version"
