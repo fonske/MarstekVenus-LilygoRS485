@@ -10,8 +10,8 @@
           device_class: power
           state_class: measurement
           state: >
-            {% if states('sensor.lilygo_rs485-2_marstek_ac_power') | float < 0 %}
-              {{ (states('sensor.lilygo_rs485-2_marstek_ac_power') | float) *-1 }}
+            {% if states('sensor.lilygo_rs485-2_marstek_ac_power') | float(0) < 0 %}
+              {{ (states('sensor.lilygo_rs485-2_marstek_ac_power') | float(0)) *-1 }}
             {% else %}
               0
             {% endif %}
@@ -22,8 +22,8 @@
           device_class: power
           state_class: measurement
           state: >
-            {% if states('sensor.lilygo_rs485-2_marstek_ac_power') | float > 0 %}
-              {{ (states('sensor.lilygo_rs485-2_marstek_ac_power') | float) }}
+            {% if states('sensor.lilygo_rs485-2_marstek_ac_power') | float(0) > 0 %}
+              {{ (states('sensor.lilygo_rs485-2_marstek_ac_power') | float(0)) }}
             {% else %}
               0
             {% endif %}
@@ -32,8 +32,8 @@
           unit_of_measurement: "%"
           state_class: measurement
           state: >
-            {% set charging = states('sensor.my_battery2_daily_charging_in_kwh') | float %}
-            {% set discharging = states('sensor.my_battery2_daily_discharging_in_kwh') | float %}
+            {% set charging = states('sensor.my_battery2_daily_charging_in_kwh') | float(0) %}
+            {% set discharging = states('sensor.my_battery2_daily_discharging_in_kwh') | float(0) %}
             {% if charging > 0 %}
               {{ ((discharging / charging) * 100) | int }}
             {% else %}
