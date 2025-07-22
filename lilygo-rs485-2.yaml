@@ -326,8 +326,10 @@ sensor:
     register_type: holding
     address: 30303
     value_type: U_WORD
-    unit_of_measurement: "dB"
-    accuracy_decimals: 0
+    unit_of_measurement: "dBm"
+    filters:
+      - multiply: -1
+    accuracy_decimals: 0  
 
   - name: "Marstek Firmware Version"
     id: "lilygo_rs485_marstek_firmware_version"
