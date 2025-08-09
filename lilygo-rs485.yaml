@@ -1007,7 +1007,7 @@ sensor:
     accuracy_decimals: 1
     skip_updates: 60 # 5 minutes
     filters:
-      - multiply: 1.0
+      - multiply: 1
     web_server:
       sorting_group_id: Info
       sorting_weight: 22
@@ -1025,7 +1025,7 @@ sensor:
     state_class: measurement
     accuracy_decimals: 1
     filters:
-      - multiply: 1.0
+      - multiply: 1
     web_server:
       sorting_group_id: Info
       sorting_weight: 23
