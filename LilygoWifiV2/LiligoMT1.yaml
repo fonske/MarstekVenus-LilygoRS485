@@ -1,0 +1,23 @@
+# Change the naming below, they will be the names used in Home Assistant
+#
+substitutions:
+  device_name: energycube2
+  friendly_name: EnergyCube2
+  device_ip: 192.168.1.78
+  
+esphome:
+  name: ${device_name}
+  friendly_name: ${friendly_name}
+  min_version: 2024.11.0
+  name_add_mac_suffix: false
+
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
+
+# Include common sections for wifi and others
+<<: !include includes/common.yaml
+
+# Include Sensor declarations
+<<: !include includes/marstek_sensors.yaml
