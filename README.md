@@ -14,5 +14,7 @@ Config for managing and monitoring a Marstek Venus Battery over Modbus in Home A
 • Software/Firmware/BMS version
 • Power restriction status
 • 9-8-2025 Lilygo Github BMS V2.15 Cell temp scale
+
 • 3-8-2025 Lilygo Github neopixelbus > esp32_rmt_led_strip
+
 • 21-9-2025 Type changed from arduino to esp-idf.  
