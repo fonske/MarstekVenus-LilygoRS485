@@ -6,9 +6,14 @@ esphome:
 
 esp32:
   board: esp32dev
+  cpu_frequency: 240MHz
+  flash_size: 4MB
   framework:
     type: esp-idf
 
+debug:
+  update_interval: 10s
+   
 # Enable logging
 logger:
   # level: VERY_VERBOSE
@@ -284,6 +289,16 @@ text_sensor:
     web_server:
       sorting_group_id: Diagnostic
       sorting_weight: 23
+
+  ## DEBUG
+  - platform: debug
+    reset_reason:
+      name: "Reset Reason"
+      entity_category: diagnostic
+    device:
+      name: "Device Info"
+      entity_category: diagnostic
+  ## END DEBUG
 
 # Binaire sensoren
 binary_sensor:
