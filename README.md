@@ -18,3 +18,4 @@ Config for managing and monitoring a Marstek Venus Battery over Modbus in Home A
 • 3-8-2025 Lilygo Github neopixelbus > esp32_rmt_led_strip
 
 • 21-9-2025 Type changed from arduino to esp-idf.  
+• 24-9-2025 Added Debug information and switch to CPU Frequency: 240 MHz (was 160MHz)
