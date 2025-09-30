@@ -19,3 +19,4 @@ Config for managing and monitoring a Marstek Venus Battery over Modbus in Home A
 
 • 21-9-2025 Type changed from arduino to esp-idf.  
 • 24-9-2025 Added Debug information and switch to CPU Frequency: 240 MHz (was 160MHz)
+• 30-9-2025 added Captive portal
