@@ -36,6 +36,8 @@ wifi:
     ssid: "Lilygo-Rs485 Fallback Hotspot"
     password: "GBDjgqkttbFLa93eFCaj"
 
+captive_portal:
+
 web_server:
   port: 80
   version: 3
