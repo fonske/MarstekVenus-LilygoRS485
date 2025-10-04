@@ -7,16 +7,16 @@ Config for managing and monitoring a Marstek Venus Battery over Modbus in Home A
 - 22-7-2025 Wifi Signal Strength
 - 22-7-2025 float (0) in marstek_venus_battery_control.yaml
 - 24-7-2025 
-• WebUI with icons
-• WIFI /BT /CLOUD status
-• WIFI strength %
-• Battery WIFI strength %
-• Software/Firmware/BMS version
-• Power restriction status
-• 9-8-2025 Lilygo Github BMS V2.15 Cell temp scale
+  - WebUI with icons
+  - WIFI /BT /CLOUD status
+  - WIFI strength %
+  - Battery WIFI strength %
+  - Software/Firmware/BMS version
+  - Power restriction status
+- 9-8-2025 Lilygo Github BMS V2.15 Cell temp scale
 
-• 3-8-2025 Lilygo Github neopixelbus > esp32_rmt_led_strip
+- 3-8-2025 Lilygo Github neopixelbus > esp32_rmt_led_strip
 
-• 21-9-2025 Type changed from arduino to esp-idf.  
-• 24-9-2025 Added Debug information and switch to CPU Frequency: 240 MHz (was 160MHz)
-• 30-9-2025 added Captive portal
+- 21-9-2025 Type changed from arduino to esp-idf.  
+- 24-9-2025 Added Debug information and switch to CPU Frequency: 240 MHz (was 160MHz)
+- 30-9-2025 added Captive portal
