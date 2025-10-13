@@ -527,7 +527,7 @@ binary_sensor:
 # Sensoren
 sensor:
   - name: "Marstek Battery Wifi Signal Strength"
-    id: lilygo_rs485_marstek_battery_wifi_signal_strenght
+    id: lilygo_rs485_marstek_battery_wifi_signal_strength
     icon: mdi:wifi
     platform: modbus_controller
     modbus_controller_id: mt
@@ -543,7 +543,7 @@ sensor:
       sorting_weight: 7
 
   - platform: copy # Reports the Battery signal strength in %
-    source_id: lilygo_rs485_marstek_battery_wifi_signal_strenght
+    source_id: lilygo_rs485_marstek_battery_wifi_signal_strength
     name: "Marstek Battery Wifi Signal"
     id: battery_wifi_signal_proc
     filters:
