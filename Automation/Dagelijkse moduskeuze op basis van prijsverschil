@@ -1,0 +1,31 @@
+alias: Dagelijkse moduskeuze op basis van prijsverschil
+description: ""
+triggers:
+  - at: "00:15:00"
+    trigger: time
+conditions: []
+actions:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ (states('sensor.duurste_uurprijs_vandaag') | float -
+              states('sensor.goedkoopste_uurprijs_vandaag') | float) > 0.10 }}
+        sequence:
+          - target:
+              entity_id: select.lilygo_rs485_marstek_user_work_mode
+            data:
+              option: ai
+            action: select.select_option
+      - conditions:
+          - condition: template
+            value_template: >
+              {{ (states('sensor.duurste_uurprijs_vandaag') | float -
+              states('sensor.goedkoopste_uurprijs_vandaag') | float) <= 0.10 }}
+        sequence:
+          - target:
+              entity_id: select.lilygo_rs485_marstek_user_work_mode
+            data:
+              option: selfconsumption
+            action: select.select_option
+mode: single
