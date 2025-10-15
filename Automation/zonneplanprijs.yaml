@@ -1,0 +1,23 @@
+template:
+  - sensor:
+      - name: "Goedkoopste uurprijs vandaag"
+        state: >
+          {% set forecast = state_attr('sensor.zonneplan_current_electricity_tariff', 'forecast') %}
+          {% set vandaag = now().date() %}
+          {% set vandaag_forecast = forecast | selectattr('datetime', 'search', vandaag|string) | list %}
+          {% set goedkoopste = vandaag_forecast | sort(attribute='electricity_price') | first %}
+          {{ (goedkoopste.electricity_price / 10000000) | round(3) }}
+        unit_of_measurement: "€/kWh"
+        device_class: monetary
+        state_class: measurement
+
+      - name: "Duurste uurprijs vandaag"
+        state: >
+          {% set forecast = state_attr('sensor.zonneplan_current_electricity_tariff', 'forecast') %}
+          {% set vandaag = now().date() %}
+          {% set vandaag_forecast = forecast | selectattr('datetime', 'search', vandaag|string) | list %}
+          {% set duurste = vandaag_forecast | sort(attribute='electricity_price') | last %}
+          {{ (duurste.electricity_price / 10000000) | round(3) }}
+        unit_of_measurement: "€/kWh"
+        device_class: monetary
+        state_class: measurement
