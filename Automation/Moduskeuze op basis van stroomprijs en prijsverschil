@@ -9,7 +9,7 @@ actions:
           - condition: template
             value_template: >
               {{ states('sensor.zonneplan_current_electricity_tariff') | float >
-              0.40 }}
+              0.36 }}
         sequence:
           - target:
               entity_id: select.lilygo_rs485_marstek_user_work_mode
@@ -20,7 +20,7 @@ actions:
           - condition: template
             value_template: >
               {{ states('sensor.zonneplan_current_electricity_tariff') | float
-              <= 0.40 }}
+              <= 0.36 }}
         sequence:
           - choose:
               - conditions:
@@ -28,7 +28,7 @@ actions:
                     value_template: >
                       {{ (states('sensor.duurste_uurprijs_vandaag') | float -
                       states('sensor.goedkoopste_uurprijs_vandaag') | float) >
-                      0.10 }}
+                      0.12 }}
                 sequence:
                   - target:
                       entity_id: select.lilygo_rs485_marstek_user_work_mode
@@ -40,7 +40,7 @@ actions:
                     value_template: >
                       {{ (states('sensor.duurste_uurprijs_vandaag') | float -
                       states('sensor.goedkoopste_uurprijs_vandaag') | float) <=
-                      0.10 }}
+                      0.12 }}
                 sequence:
                   - target:
                       entity_id: select.lilygo_rs485_marstek_user_work_mode
