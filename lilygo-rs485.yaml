@@ -1024,7 +1024,16 @@ sensor:
     accuracy_decimals: 1
     skip_updates: 60 # 5 minutes
     filters:
-      - multiply: 1
+      - lambda: |-
+          // Extract the numeric part of the BMS version (e.g., "V213" -> 213)
+          std::string version_str = id(bms_version_text).state;
+          unsigned int version_num = 0;
+          if (version_str.length() > 1 && version_str[0] == 'V') {
+            version_num = std::stoul(version_str.substr(1));
+          }
+          // Multiply by 0.1 for BMS version < 2.13
+          float multiplier = (version_num < 213) ? 0.1f : 1.0f;
+          return x * multiplier;
     web_server:
       sorting_group_id: Info
       sorting_weight: 22
@@ -1042,7 +1051,16 @@ sensor:
     state_class: measurement
     accuracy_decimals: 1
     filters:
-      - multiply: 1
+      - lambda: |-
+          // Extract the numeric part of the BMS version (e.g., "V213" -> 213)
+          std::string version_str = id(bms_version_text).state;
+          unsigned int version_num = 0;
+          if (version_str.length() > 1 && version_str[0] == 'V') {
+            version_num = std::stoul(version_str.substr(1));
+          }
+          // Multiply by 0.1 for BMS version < 2.13
+          float multiplier = (version_num < 213) ? 0.1f : 1.0f;
+          return x * multiplier;
     web_server:
       sorting_group_id: Info
       sorting_weight: 23
