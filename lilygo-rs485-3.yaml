@@ -1369,6 +1369,18 @@ number:
     step: 1
     skip_updates: 2 # 10 seconds
 
+  - platform: template
+    name: "Led Brightness"
+    id: led_brightness
+    icon: mdi:brightness-6
+    unit_of_measurement: "%"
+    initial_value: 100
+    min_value: 0
+    max_value: 100
+    step: 1
+    mode: slider
+    optimistic: true
+
 ###############################################################################
 # LED
 ###############################################################################
@@ -1396,6 +1408,7 @@ interval:
                 red: 0%
                 green: 100%  # 🟢 Green = Modbus OK & WiFi strong
                 blue: 0%
+                brightness: !lambda "return id(led_brightness).state / 100.0;"
           else:
             - if:
                 condition:
@@ -1407,6 +1420,7 @@ interval:
                       red: 100%  # 🟣 Purple = Both Modbus & WiFi failed
                       green: 0%
                       blue: 100%
+                      brightness: !lambda "return id(led_brightness).state / 100.0;"
                 else:
                   - if:
                       condition:
@@ -1418,9 +1432,11 @@ interval:
                             red: 0%
                             green: 0%
                             blue: 100%  # 🔵 Blue = Weak WiFi signal (< -80 dBm)
+                            brightness: !lambda "return id(led_brightness).state / 100.0;"
                       else:
                         - light.turn_on:
                             id: status_led
                             red: 100%  # 🔴 Red = Modbus error, WiFi OK
                             green: 0%
                             blue: 0%
+                            brightness: !lambda "return id(led_brightness).state / 100.0;"
