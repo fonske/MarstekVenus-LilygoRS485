@@ -901,7 +901,7 @@ sensor:
       sorting_group_id: Info
       sorting_weight: 26
 
-  - name: "Marstek Lifetime Charging Energy"
+  - name: "Lifetime Charging Energy"
     id: "lilygo_rs485_marstek_lifetime_charging_energy"
     icon: mdi:chart-bar
     platform: modbus_controller
@@ -920,7 +920,7 @@ sensor:
       sorting_group_id: Info
       sorting_weight: 12
 
-  - name: "Marstek Lifetime Discharging Energy"
+  - name: "Lifetime Discharging Energy"
     id: "lilygo_rs485_marstek_lifetime_discharging_energy"
     icon: mdi:chart-bar
     platform: modbus_controller
@@ -940,7 +940,7 @@ sensor:
       sorting_weight: 13
 
   - platform: template
-    name: "Marstek Lifetime Round Trip Efficiency"
+    name: "Lifetime Round Trip Efficiency"
     id: lilygo_rs485_marstek_lifetime_round_trip_efficiency
     icon: mdi:percent
     unit_of_measurement: "%"
@@ -1506,5 +1506,6 @@ interval:
                             red: 100%  # 🔴 Red = Modbus error, WiFi OK
                             green: 0%
                             blue: 0%
+
 
 
