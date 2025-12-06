@@ -2,7 +2,7 @@ substitutions:
   name: marstek_m1    ## change name to marstek_m2 or marstek_m3 for more batterys
   friendly_name: MT1  ## change name to MT2 or MT3 for more batterys
 
-## Version 1.01 - lilygo marstek v3
+## Version 1.02 - lilygo marstek v3
 esphome:
   name: ${name}
   friendly_name: ${friendly_name}
@@ -132,10 +132,10 @@ text_sensor:
 #      entity_category: diagnostic
   ## END DEBUG
 
-  - platform: modbus_controller
-    name: "Device Name"
-    icon: mdi:rename-outline
+  - name: "Device Name"
     id: device_name
+    icon: mdi:rename-outline
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 31000
@@ -147,59 +147,60 @@ text_sensor:
       sorting_group_id: Diagnostic
       sorting_weight: 7
 
-  - platform: template
-    name: "Software Version"
+  - name: "Software Version"
     id: software_version_text
     icon: mdi:factory
+    platform: template
     update_interval: never  # updates only when sensor triggers
     entity_category: diagnostic
     web_server:
       sorting_group_id: Diagnostic
       sorting_weight: 8
 
-  - platform: template
-    name: "Firmware Version"
+  - name: "Firmware Version"
     id: firmware_version_text
     icon: mdi:factory
+    platform: template
     update_interval: never  # updates only when sensor triggers
     entity_category: diagnostic
     web_server:
       sorting_group_id: Diagnostic
       sorting_weight: 9
 
-  - platform: template
-    name: "VMS Version"
+  - name: "VMS Version"
     id: vms_version_text
     icon: mdi:factory
+    platform: template
     update_interval: never  # updates only when sensor triggers
     entity_category: diagnostic
     web_server:
       sorting_group_id: Diagnostic
       sorting_weight: 10
 
-  - platform: template
-    name: "EMS Version"
+  - name: "EMS Version"
     id: ems_version_text
     icon: mdi:factory
+    platform: template
     update_interval: never  # updates only when sensor triggers
     entity_category: diagnostic
     web_server:
       sorting_group_id: Diagnostic
       sorting_weight: 11
 
-  - platform: template
-    name: "BMS Version"
+  - name: "BMS Version"
     id: bms_version_text
     icon: mdi:factory
+    platform: template
     update_interval: never  # updates only when sensor triggers
     entity_category: diagnostic
     web_server:
       sorting_group_id: Diagnostic
       sorting_weight: 12
 
-  - platform: template
-    name: "Inverter State"
+  - name: "Inverter State"
+    id: inverter_state_text
     icon: mdi:state-machine
+    platform: template
     lambda: |-
       switch (int(id(inverter_state).state)) {
         case 0: return std::string("Sleep");
@@ -240,14 +241,14 @@ text_sensor:
       sorting_group_id: Diagnostic
       sorting_weight: 2
 
-  - platform: modbus_controller
+  - name: "Wifi status"
     id: wifi_status
-    name: "Wifi status"
+    icon: mdi:wifi-alert
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 30300
     raw_encode: NONE
-    icon: mdi:wifi-alert
     entity_category: diagnostic
     skip_updates: 20
     lambda: |-
@@ -263,14 +264,14 @@ text_sensor:
       sorting_group_id: Diagnostic
       sorting_weight: 20
 
-  - platform: modbus_controller
+  - name: "BT status"
     id: bt_status
-    name: "BT status"
+    icon: mdi:home-heart
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 30301
     raw_encode: NONE
-    icon: mdi:home-heart
     entity_category: diagnostic
     skip_updates: 20
     lambda: |-
@@ -288,14 +289,14 @@ text_sensor:
       sorting_group_id: Diagnostic
       sorting_weight: 21
 
-  - platform: modbus_controller
+  - name: "Cloud status"
     id: cloud_status
-    name: "Cloud status"
+    icon: mdi:home-heart
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 30302
     raw_encode: NONE
-    icon: mdi:home-heart
     entity_category: diagnostic
     skip_updates: 20
     lambda: |-
@@ -310,224 +311,6 @@ text_sensor:
     web_server:
       sorting_group_id: Diagnostic
       sorting_weight: 22
-
-# Binaire sensoren
-binary_sensor:
-#  - platform: modbus_controller
-#    name: "PLL Abnormal Restart"
-#    icon: mdi:flash-triangle
-#    id: pll_abnormal_restart
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36000
-#    bitmask: 0x01
-
-#  - platform: modbus_controller
-#    name: "Overtemperature Limit"
-#    icon: mdi:thermometer-alert
-#    id: overtemperature_limit
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36000
-#    bitmask: 0x02
-
-#  - platform: modbus_controller
-#    name: "Low Temperature Limit"
-#    icon: mdi:thermometer-alert
-#    id: low_overtemperature_limit
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36000
-#    bitmask: 0x04
-
-#  - platform: modbus_controller
-#    name: "Fan Abnormal Warning"
-#    icon: mdi:fan-alert
-#    id: fan_abnormal_warning
-#   modbus_controller_id: mt
-#    register_type: holding
-#    address: 36000
-#    bitmask: 0x08
-
-#  - platform: modbus_controller
-#    name: "Low Battery SOC Warning"
-#    icon: mdi:battery-off-outline
-#    id: low_battery_soc_warning
-#    modbus_controller_id: mt
-#   register_type: holding
-#    address: 36000
-#    bitmask: 0x16
-
-#  - platform: modbus_controller
-#    name: "Output Overcurrent Warning"
-#    icon: mdi:flash-triangle
-#    id: output_overcurrent_warning
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36000
-#   bitmask: 0x32
-
-#  - platform: modbus_controller
-#    name: "Abnormal Line Sequence Detection"
-#    icon: mdi:flash-triangle
-#    id: abnormal_line_sequence_detection
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36000
-#    bitmask: 0x64
-
-#  - platform: modbus_controller
-#    name: "Wifi Abnormal"
-#    icon: mdi:wifi-alert
-#    id: wifi_abnormal
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36001
-#   bitmask: 0x01
-
-#  - platform: modbus_controller
-#    name: "BLE abnormal"
-#    icon: mdi:bluetooth-off
-#    id: ble_abnormal
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36001
-#    bitmask: 0x02
-
-#  - platform: modbus_controller
-#    name: "Network abnormal"
-#    icon: mdi:network-off
-#    id: network_abnormal
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36001
-#    bitmask: 0x04
-
-#  - platform: modbus_controller
-#    name: "CT connection abnormal"
-#    icon: mdi:robot-vacuum-alert
-#    id: ct_connection_abnormal
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36001
-#    bitmask: 0x08
-
-#  - platform: modbus_controller
-#    name: "Grid overvoltage"
-#    icon: mdi:flash-triangle
-#    id: grid_overvoltage
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36100
-#    bitmask: 0x01
-
-#  - platform: modbus_controller
-#    name: "Grid undervoltage"
-#    icon: mdi:flash-triangle-outline
-#    id: grid_undervoltage
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36100
-#    bitmask: 0x02
-
-#  - platform: modbus_controller
-#    icon: mdi:flash-triangle
-#    name: "Grid overfrequency"
-#    id: grid_overfrequency
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36100
-#    bitmask: 0x04
-
-#  - platform: modbus_controller
-#    name: "Grid underfrequency"
-#    icon: mdi:flash-triangle
-#    id: grid_underfrequency
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36100
-#    bitmask: 0x08
-
-#  - platform: modbus_controller
-#    name: "Grid peak voltage abnormal"
-#    icon: mdi:alert-plus
-#    id: grid_peak_voltage_abnormal
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36100
-#    bitmask: 0x16
-
-#  - platform: modbus_controller
-#    name: "Current Dcover"
-#    icon: mdi:flash-triangle
-#    id: current_dcover
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36100
-#   bitmask: 0x32
-
-#  - platform: modbus_controller
-#    name: "Voltage Dcover"
-#    icon: mdi:flash-triangle
-#    id: voltage_dcover
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36100
-#    bitmask: 0x64
-
-#  - platform: modbus_controller
-#    name: "BAT overvoltage"
-#    icon: mdi:flash-triangle
-#    id: bat_overvoltage
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36101
-#    bitmask: 0x01
-
-#  - platform: modbus_controller
-#    name: "BAT undervoltage"
-#    icon: mdi:flash-triangle-outline
-#    id: bat_undervoltage
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36101
-#    bitmask: 0x02
-
-#  - platform: modbus_controller
-#    name: "BAT overcurrent"
-#    icon: mdi:wave-undercurrent
-#    id: bat_overcurrent
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36101
-#    bitmask: 0x04
-
-#  - platform: modbus_controller
-#    name: "BAT low SOC"
-#    icon: mdi:battery-off-outline
-#    id: bat_low_soc
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36101
-#    bitmask: 0x08
-
-#  - platform: modbus_controller
-#    name: "BAT communication failure"
-#    icon: mdi:flash-triangle
-#    id: bat_communication_failure
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36101
-#    bitmask: 0x16
-
-#  - platform: modbus_controller
-#    name: "BMS protect"
-#    icon: mdi:flash-triangle
-#    id: bms_protect
-#    modbus_controller_id: mt
-#    register_type: holding
-#    address: 36101
-#    bitmask: 0x32
 
 ## Sensoren
 sensor:
@@ -547,23 +330,23 @@ sensor:
       sorting_group_id: Diagnostic
       sorting_weight: 7
 
-  - platform: copy # Reports the Battery signal strength in %
-    source_id: battery_wifi_signal_strength
-    name: Battery Wifi signal
+  - name: Battery Wifi signal
     id: battery_wifi_signal_proc
+    icon: mdi:wifi
+    platform: copy # Reports the Battery signal strength in %
+    source_id: battery_wifi_signal_strength
     filters:
       - lambda: return min(max(2 * (x + 100.0), 0.0), 100.0);
     unit_of_measurement: "%"
     entity_category: diagnostic
     device_class: ""
-    icon: mdi:wifi
     web_server:
       sorting_group_id: Diagnostic
       sorting_weight: 6
 
-  - platform: modbus_controller
-    id: inverter_state  # No name, since it's internal
+  - id: inverter_state  # No name, since it's internal
     icon: mdi:state-machine
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 35100
@@ -573,9 +356,9 @@ sensor:
       sorting_group_id: Info
       sorting_weight: 30
 
-  - platform: modbus_controller
-    id: software_version # No name, since it's internal
+  - id: software_version # No name, since it's internal
     icon: mdi:factory
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 31100
@@ -591,9 +374,9 @@ sensor:
             sprintf(buf, "V%d", version);
             id(software_version_text).publish_state(buf);
 
-  - platform: modbus_controller
-    id: firmware_version # No name, since it's internal
+  - id: firmware_version # No name, since it's internal
     icon: mdi:factory
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 31101
@@ -609,9 +392,9 @@ sensor:
             sprintf(buf, "V%d", version);
             id(firmware_version_text).publish_state(buf);
 
-  - platform: modbus_controller
-    id: ems_version
+  - id: ems_version # No name, since it's internal
     icon: mdi:factory
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 30200
@@ -627,9 +410,9 @@ sensor:
             sprintf(buf, "V%d", version);
             id(ems_version_text).publish_state(buf);
 
-  - platform: modbus_controller
-    id: vms_version
+  - id: vms_version # No name, since it's internal
     icon: mdi:factory
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 30202
@@ -645,9 +428,9 @@ sensor:
             sprintf(buf, "V%d", version);
             id(vms_version_text).publish_state(buf);
 
-  - platform: modbus_controller
-    id: bms_version
+  - id: bms_version # No name, since it's internal
     icon: mdi:factory
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 30204 #31102
@@ -669,7 +452,7 @@ sensor:
     platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
-    address: 30100
+    address: 30100 #32100 in V12
     value_type: U_WORD
     unit_of_measurement: "V"
     device_class: voltage
@@ -684,11 +467,11 @@ sensor:
 
   - name: "Battery Current"
     icon: mdi:current-dc
-    id: battery_current_average
+    id: battery_current
     platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
-    address: 30101
+    address: 30101 #32101 in V12
     value_type: S_WORD
     unit_of_measurement: "A"
     device_class: current
@@ -749,10 +532,10 @@ sensor:
       sorting_group_id: Info
       sorting_weight: 8
 
-  - platform: template
-    name: "Battery Remaining Capacity"
+  - name: "Battery Remaining Capacity"
     id: battery_remaining_capacity
     icon: mdi:battery-arrow-down-outline
+    platform: template
     unit_of_measurement: "kWh"
     accuracy_decimals: 2
     update_interval: 300s
@@ -768,8 +551,8 @@ sensor:
       sorting_weight: 7
 
   - name: "AC Power"
-    icon: mdi:flash
     id: ac_power
+    icon: mdi:flash
     platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
@@ -785,8 +568,8 @@ sensor:
       sorting_weight: 1
 
   - name: "AC Current"
-    icon: mdi:current-ac
     id: ac_current
+    icon: mdi:current-ac
     platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
@@ -804,8 +587,8 @@ sensor:
       sorting_weight: 2
 
   - name: "AC Voltage"
-    icon: mdi:sine-wave
     id: ac_voltage
+    icon: mdi:sine-wave
     platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
@@ -823,8 +606,8 @@ sensor:
       sorting_weight: 3
 
   - name: "AC Frequency"
-    icon: mdi:sine-wave
     id: ac_frequency
+    icon: mdi:sine-wave
     platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
@@ -842,8 +625,8 @@ sensor:
       sorting_weight: 4
 
   - name: "AC Offgrid Voltage"
-    icon: mdi:sine-wave
     id: ac_offgrid_voltage
+    icon: mdi:sine-wave
     platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
@@ -859,8 +642,8 @@ sensor:
       sorting_weight: 44
 
   - name: "AC Offgrid Current"
-    icon: mdi:current-ac
     id: ac_offgrid_current
+    icon: mdi:current-ac
     platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
@@ -876,8 +659,8 @@ sensor:
       sorting_weight: 45
 
   - name: "AC Offgrid Power"
-    icon: mdi:flash
     id: ac_offgrid_power
+    icon: mdi:flash
     platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
@@ -893,8 +676,8 @@ sensor:
 
   - name: "Maximum Cell Voltage"
     id: max_cell_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 37007
@@ -912,8 +695,8 @@ sensor:
 
   - name: "Minimum Cell Voltage"
     id: min_cell_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 37008
@@ -929,10 +712,10 @@ sensor:
       sorting_group_id: Info
       sorting_weight: 25
 
-  - platform: template
-    name: "Cell Voltage Delta"
+  - name: "Cell Voltage Delta"
     id: cell_voltage_delta
     icon: mdi:sine-wave
+    platform: template
     unit_of_measurement: "V"
     device_class: voltage
     accuracy_decimals: 3
@@ -948,8 +731,8 @@ sensor:
 
   - name: "Cell 1 Voltage"  #V3 only
     id: cell_1_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34018
@@ -967,8 +750,8 @@ sensor:
 
   - name: "Cell 2 Voltage"  #V3 only
     id: cell_2_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34019
@@ -986,8 +769,8 @@ sensor:
 
   - name: "Cell 3 Voltage"  #V3 only
     id: cell_3_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34020
@@ -1005,8 +788,8 @@ sensor:
 
   - name: "Cell 4 Voltage"  #V3 only
     id: cell_4_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34021
@@ -1024,8 +807,8 @@ sensor:
 
   - name: "Cell 5 Voltage"  #V3 only
     id: cell_5_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34022
@@ -1043,8 +826,8 @@ sensor:
 
   - name: "Cell 6 Voltage"  #V3 only
     id: cell_6_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34023
@@ -1062,8 +845,8 @@ sensor:
 
   - name: "Cell 7 Voltage"  #V3 only
     id: cell_7_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34024
@@ -1081,8 +864,8 @@ sensor:
 
   - name: "Cell 8 Voltage"  #V3 only
     id: cell_8_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34025
@@ -1100,8 +883,8 @@ sensor:
 
   - name: "Cell 9 Voltage"  #V3 only
     id: cell_9_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34026
@@ -1119,8 +902,8 @@ sensor:
 
   - name: "Cell 10 Voltage"  #V3 only
     id: cell_10_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34027
@@ -1138,8 +921,8 @@ sensor:
 
   - name: "Cell 11 Voltage"  #V3 only
     id: cell_11_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34028
@@ -1157,8 +940,8 @@ sensor:
 
   - name: "Cell 12 Voltage"  #V3 only
     id: cell_12_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34029
@@ -1176,8 +959,8 @@ sensor:
 
   - name: "Cell 13 Voltage"  #V3 only
     id: cell_13_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34030
@@ -1195,8 +978,8 @@ sensor:
 
   - name: "Cell 14 Voltage"  #V3 only
     id: cell_14_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34031
@@ -1214,8 +997,8 @@ sensor:
 
   - name: "Cell 15 Voltage"  #V3 only
     id: cell_15_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34032
@@ -1234,8 +1017,8 @@ sensor:
 
   - name: "Cell 16 Voltage"  #V3 only
     id: cell_16_voltage
-    platform: modbus_controller
     icon: mdi:sine-wave
+    platform: modbus_controller
     modbus_controller_id: mt
     register_type: holding
     address: 34033
@@ -1306,7 +1089,7 @@ sensor:
     register_count: 2
     web_server:
       sorting_group_id: Info
-      sorting_weight: 8
+      sorting_weight: 9
 
   - name: "Daily Discharging Energy"
     id: daily_discharging_energy
@@ -1370,6 +1153,7 @@ sensor:
       sorting_weight: 12
 
   - name: "Internal Temperature"
+    id: internal_mt_temperature
     icon: mdi:thermometer
     platform: modbus_controller
     modbus_controller_id: mt
@@ -1388,6 +1172,7 @@ sensor:
       sorting_weight: 19
 
   - name: "Internal MOS1 Temperature"
+    id: internal_mos1_temperature
     icon: mdi:thermometer
     platform: modbus_controller
     modbus_controller_id: mt
@@ -1406,6 +1191,7 @@ sensor:
       sorting_weight: 20
 
   - name: "Internal MOS2 Temperature"
+    id: internal_mos2_temperature
     icon: mdi:thermometer
     platform: modbus_controller
     modbus_controller_id: mt
@@ -1461,6 +1247,7 @@ sensor:
       sorting_weight: 23
 
   - name: "Battery Charge Voltage Limit"
+    id: battery_charge_voltage_limit
     platform: modbus_controller
     icon: mdi:sine-wave
     modbus_controller_id: mt
@@ -1480,6 +1267,7 @@ sensor:
 
 # Slow Sensor 
   - name: "Battery Charge Current Limit"
+    id: battery_charge_current_limit
     icon: mdi:current-dc
     platform: modbus_controller
     modbus_controller_id: mt
@@ -1499,6 +1287,7 @@ sensor:
 
 # Slow Sensor 
   - name: "Battery Discharge Current Limit"
+    id: battery_discharge_current_limit
     icon: mdi:current-dc
     platform: modbus_controller
     modbus_controller_id: mt
@@ -1541,11 +1330,11 @@ sensor:
       sorting_weight: 5
 
   # An internal sensor to check Modbus communication status.
-  - platform: modbus_controller
-    modbus_controller_id: mt
-    name: "Modbus Status"
-    icon: mdi:transit-connection
+  - name: "Modbus Status"
     id: modbus_status
+    icon: mdi:transit-connection
+    platform: modbus_controller
+    modbus_controller_id: mt
     register_type: holding
     address: 32104  # Using the Battery SOC register as a reference
     value_type: U_WORD
@@ -1554,9 +1343,10 @@ sensor:
       sorting_group_id: Diagnostic
       sorting_weight: 15
 
-# Instellingen en modi (Select en Number)
+ # Instellingen en modi (Select en Number)
 select:
   - name: "RS485 Control Mode"
+    id: rs485_control_mode
     icon: mdi:connection
     platform: modbus_controller
     modbus_controller_id: mt
@@ -1571,6 +1361,7 @@ select:
       sorting_weight: 1
 
   - name: "User Work Mode"
+    id: user_work_mode
     icon: mdi:auto-mode
     platform: modbus_controller
     modbus_controller_id: mt
@@ -1586,6 +1377,7 @@ select:
       sorting_weight: 2
 
   - name: "Backup Function"
+    id: backup_function
     icon: mdi:power-plug-battery
     platform: modbus_controller
     modbus_controller_id: mt
@@ -1599,7 +1391,8 @@ select:
       sorting_group_id: Control
       sorting_weight: 3 
 
-  - name: "Forcible Charge/Discharge" 
+  - name: "Forcible Charge/Discharge"
+    id: forcible_charge_discharge
     icon: mdi:arrow-up-down
     platform: modbus_controller
     modbus_controller_id: mt
@@ -1614,7 +1407,25 @@ select:
       sorting_weight: 4
 
 number:
+  - name: "Charge To SOC"
+    id: charge_to_soc
+    icon: mdi:battery-charging-medium 
+    mode: box
+    platform: modbus_controller
+    modbus_controller_id: mt
+    register_type: holding
+    address: 42011
+    value_type: U_WORD
+    unit_of_measurement: "%"
+    min_value: 12
+    max_value: 100
+    step: 1
+    web_server:
+      sorting_group_id: Control
+      sorting_weight: 9
+
   - name: "Forcible Charge Power"
+    id: forcible_charge_power
     icon: mdi:tune-variant
     mode: box
     platform: modbus_controller
@@ -1632,6 +1443,7 @@ number:
       sorting_weight: 5
 
   - name: "Forcible Discharge Power"
+    id: forcible_discharge_power
     icon: mdi:tune-variant
     mode: box
     platform: modbus_controller
@@ -1648,7 +1460,44 @@ number:
       sorting_group_id: Control
       sorting_weight: 6
 
+  - name: "Charging Cutoff Capacity"
+    id: charging_cutoff_capacity
+    icon: mdi:battery-90
+    mode: box
+    platform: modbus_controller
+    modbus_controller_id: mt
+    register_type: holding
+    address: 44000
+    value_type: U_WORD
+    unit_of_measurement: "%"
+    min_value: 80
+    max_value: 100
+    multiply: 10
+    skip_updates: 6 # 30 seconds
+    web_server:
+      sorting_group_id: Control
+      sorting_weight: 10
+
+  - name: "Discharging Cutoff Capacity"
+    id: discharging_cutoff_capacity
+    icon: mdi:battery-10
+    mode: box
+    platform: modbus_controller
+    modbus_controller_id: mt
+    register_type: holding
+    address: 44001
+    value_type: U_WORD
+    unit_of_measurement: "%"
+    min_value: 12
+    max_value: 30
+    multiply: 10
+    skip_updates: 6 # 30 seconds
+    web_server:
+      sorting_group_id: Control
+      sorting_weight: 11
+
   - name: "Max. Charge Power"
+    id: max_charge_power
     icon: mdi:tune-variant
     mode: box
     platform: modbus_controller
@@ -1666,6 +1515,7 @@ number:
       sorting_weight: 7
 
   - name: "Max. Discharge Power"
+    id: max_discharge_power
     icon: mdi:tune-variant
     mode: box
     platform: modbus_controller
@@ -1681,22 +1531,6 @@ number:
     web_server:
       sorting_group_id: Control
       sorting_weight: 8
-
-  - name: "Charge To SOC"
-    icon: mdi:battery-charging-medium 
-    mode: box
-    platform: modbus_controller
-    modbus_controller_id: mt
-    register_type: holding
-    address: 42011
-    value_type: U_WORD
-    unit_of_measurement: "%"
-    min_value: 12
-    max_value: 100
-    step: 1
-    web_server:
-      sorting_group_id: Control
-      sorting_weight: 9
 
 ###############################################################################
 # LED
