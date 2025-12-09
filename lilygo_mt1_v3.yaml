@@ -2,7 +2,7 @@ substitutions:
   name: marstek_m1    ## change name to marstek_m2 or marstek_m3 for more batterys
   friendly_name: MT1  ## change name to MT2 or MT3 for more batterys
 
-## Version 1.03 - lilygo marstek v3
+## Version 1.1 - lilygo marstek v3
 #
 # not working:
 # sensor:
@@ -1046,8 +1046,8 @@ sensor:
       sorting_group_id: Info
       sorting_weight: 42
 
-  - name: "Total Charging Energy"
-    id: total_charging_energy
+  - name: "Lifetime Charging Energy"
+    id: lifetime_charging_energy
     icon: mdi:chart-bar
     platform: modbus_controller
     modbus_controller_id: mt
@@ -1065,8 +1065,8 @@ sensor:
       sorting_group_id: Info
       sorting_weight: 12
 
-  - name: "Total Discharging Energy"
-    id: total_discharging_energy
+  - name: "Lifetime Discharging Energy"
+    id: lifetime_discharging_energy
     icon: mdi:chart-bar
     platform: modbus_controller
     modbus_controller_id: mt
@@ -1083,6 +1083,32 @@ sensor:
     web_server:
       sorting_group_id: Info
       sorting_weight: 13
+
+  - name: "Lifetime Round Trip Efficiency"
+    id: lifetime_round_trip_efficiency
+    icon: mdi:percent
+    platform: template
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+    state_class: measurement
+    lambda: |-
+      if (!id(lifetime_charging_energy).has_state() ||
+          !id(lifetime_discharging_energy).has_state()) {
+        return NAN;
+      }
+      float total_charge = id(lifetime_charging_energy).state;       // kWh in
+      float total_discharge = id(lifetime_discharging_energy).state; // kWh out
+      if (total_charge <= 0.0f) {
+        return NAN;  // avoid divide-by-zero until we have data
+      }
+      float eff = (total_discharge / total_charge) * 100.0f;
+      // Optional: clamp to a sane range to avoid noise
+      if (eff < 0.0f) eff = 0.0f;
+      if (eff > 110.0f) eff = 110.0f;
+      return eff;
+    web_server:
+      sorting_group_id: Info
+      sorting_weight: 14
 
   - name: "Daily Charging Energy"
     id: daily_charging_energy
