@@ -5,7 +5,7 @@ substitutions:
 ## Version 1.41 - added lifetime RTE and uart logging switch
 esphome:
   name: ${name}
-  friendly_name: ${friendly_name}
+  # friendly_name: ${friendly_name}  ### temporarely uncommented because of sensor naming wrong for nodered flow gitcode bob
   min_version: 2025.7.0
   name_add_mac_suffix: false
 
@@ -1556,5 +1556,6 @@ interval:
                             red: 100%  # 🔴 Red = Modbus error, WiFi OK
                             green: 0%
                             blue: 0%
+
 
 
