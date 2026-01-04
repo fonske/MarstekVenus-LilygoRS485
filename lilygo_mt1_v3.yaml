@@ -17,7 +17,7 @@ substitutions:
 
 esphome:
   name: ${name}
-  friendly_name: ${friendly_name}
+  # friendly_name: ${friendly_name}  ### temporarely uncommented because of sensor naming wrong for nodered flow gitcode bob
   min_version: 2025.11.0
   name_add_mac_suffix: false
 
