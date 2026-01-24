@@ -1360,7 +1360,7 @@ select:
       sorting_group_id: Control
       sorting_weight: 3 
 
-  - name: "Forcible Charge/Discharge"
+  - name: "Forcible Charge⁄Discharge"
     id: forcible_charge_discharge
     icon: mdi:arrow-up-down
     platform: modbus_controller
@@ -1556,6 +1556,7 @@ interval:
                             red: 100%  # 🔴 Red = Modbus error, WiFi OK
                             green: 0%
                             blue: 0%
+
 
 
 
