@@ -1,6 +1,6 @@
 substitutions:
   name: marstek-m1    ## change name to marstek-m2 or marstek-m3 for more batterys
-  friendly_name: Marstek m1  ## change name to marstek m2 or marstek m3 for more batterys
+  friendly_name: Marstek m1  ## change name to Marstek m2 or Marstek m3 for more batterys
 
 ## Version 1.40 - Changed name to prevent failure in wifi connections
 esphome:
@@ -1582,6 +1582,7 @@ interval:
                             red: 100%  # 🔴 Red = Modbus error, WiFi OK
                             green: 0%
                             blue: 0%
+
 
 
 
