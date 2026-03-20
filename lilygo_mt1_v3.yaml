@@ -353,6 +353,8 @@ sensor:
     address: 30303
     value_type: U_WORD
     unit_of_measurement: "dBm"
+    device_class: signal_strength
+    state_class: measurement
     filters:
       - multiply: -1
     accuracy_decimals: 0   
@@ -540,6 +542,8 @@ sensor:
     address: 32104
     value_type: U_WORD
     unit_of_measurement: "%"
+    device_class: battery
+    state_class: measurement
     accuracy_decimals: 0
     web_server:
       sorting_group_id: Info
@@ -554,6 +558,8 @@ sensor:
     address: 32105 
     value_type: U_WORD
     unit_of_measurement: "kWh"
+    device_class: energy_storage
+    state_class: measurement
     accuracy_decimals: 2
     filters:
       - multiply: 0.001 
@@ -567,6 +573,8 @@ sensor:
     icon: mdi:battery-arrow-down-outline
     platform: template
     unit_of_measurement: "kWh"
+    state_class: measurement
+    device_class: energy_storage
     accuracy_decimals: 2
     update_interval: 300s
     lambda: |-
