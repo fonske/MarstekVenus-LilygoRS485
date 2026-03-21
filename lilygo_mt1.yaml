@@ -569,6 +569,8 @@ sensor:
     address: 30303
     value_type: U_WORD
     unit_of_measurement: "dBm"
+    device_class: signal_strength
+    state_class: measurement
     filters:
       - multiply: -1
     accuracy_decimals: 0   
@@ -734,6 +736,8 @@ sensor:
     address: 32105 
     value_type: U_WORD
     unit_of_measurement: "kWh"
+    device_class: energy_storage
+    state_class: measurement
     accuracy_decimals: 2
     filters:
       - multiply: 0.001 # Firmware 148: 0.001 / Firmware 147: 0.01
@@ -747,6 +751,8 @@ sensor:
     id: battery_remaining_capacity
     icon: mdi:battery-arrow-down-outline
     unit_of_measurement: "kWh"
+    state_class: measurement
+    device_class: energy_storage
     accuracy_decimals: 2
     update_interval: 300s
     lambda: |-
