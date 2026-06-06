@@ -566,7 +566,22 @@ sensor:
     unit_of_measurement: "%"
     device_class: battery
     state_class: measurement
-    accuracy_decimals: 0
+    accuracy_decimals: 1
+    internal: True
+    web_server:
+      sorting_group_id: Info
+      sorting_weight: 6
+
+  - platform: template
+    name: "Battery State Of Charge"
+    id: battery_state_of_charge_template
+    icon: mdi:power-plug-battery-outline
+    lambda: |-
+      return id(battery_state_of_charge).state;
+    unit_of_measurement: "%"
+    accuracy_decimals: 1
+    device_class: battery
+    state_class: measurement
     web_server:
       sorting_group_id: Info
       sorting_weight: 6
