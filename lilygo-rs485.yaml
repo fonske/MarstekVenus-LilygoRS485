@@ -684,6 +684,8 @@ sensor:
     address: 32104
     value_type: U_WORD
     unit_of_measurement: "%"
+    device_class: battery
+    state_class: measurement
     accuracy_decimals: 0
     web_server:
       sorting_group_id: Info
